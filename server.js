@@ -24,12 +24,12 @@ app.use(cors());
 app.post("/pusher/pusher-auth", (req, res) => {
     console.log('req', req);
     const socketId = req.body.socket_id;
-    // const user={
-    //     id:"12345"
-    // }
-    const channel = req.body.channel_name;
-    const authReponse = pusher.authorizeChannel(socketId, channel);
-    //const authReponse = pusher.authenticateUser(socketId, user);
+    const user={
+        id:"12345"
+    }
+    //const channel = req.body.channel_name;
+    //const authReponse = pusher.authorizeChannel(socketId, channel);
+    const authReponse = pusher.authenticateUser(socketId, user);
     res.send(authReponse);
     //res.send(authResponse);
 });
