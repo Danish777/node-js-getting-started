@@ -1,7 +1,7 @@
 // server.js
 
 // First, run 'npm install pusher express cookie-parser'
-// Then run this file with 'node server.js'
+// Then run this file with 'node server.js' 
 const express = require("express");
 const cors = require("cors");
 const Pusher = require("pusher");
