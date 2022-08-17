@@ -21,27 +21,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-app.post("/pusher/pusher-auth", (req, res) => {
-    console.log('req', req);
+app.post("/pusher/auth", (req, res) => {
     const socketId = req.body.socket_id;
-    const user={
-        id:"12345"
-    }
-    //const channel = req.body.channel_name;
-    //const authReponse = pusher.authorizeChannel(socketId, channel);
-    const authReponse = pusher.authenticateUser(socketId, user);
+    const channel = req.body.channel_name;
+    const authReponse = pusher.authorizeChannel(socketId, channel);
     res.send(authReponse);
     //res.send(authResponse);
 });
-app.post("/send-location", (req, res) => {
-    const data = req.body;
-    pusher.trigger("share-location", "read-location", {
-        value: data,
-    });
-    res.send({
-        status:"done"
-    });
-    //res.send(authResponse);
-});
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}!`));
